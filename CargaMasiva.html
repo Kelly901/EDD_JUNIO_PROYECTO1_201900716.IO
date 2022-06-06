@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <script type="text/javascript" src="ListaCircular.js"></script>
+    <script type="text/javascript" src="CargarArchivo.js"></script>
+
+    
+</head>
+<body>
+    
+   
+  
+</body>
+<!--<script>
+    window.addEventListener('load',()=>{
+    document.getElementById('archivo').addEventListener('change',CargarArchivo.abrirArhivo)
+});
+</script>-->
+<!--<script>
+    function abrirArhivo(event){
+        var auxiliar="";
+        var archivo=event.target.files[0];
+        if(archivo){
+            let reader=new FileReader();
+            reader.onload=function(e){
+                let contenido=e.target.result;
+                auxiliar=contenido;
+                //console.log(contenido);
+                let ob=JSON.parse(e.target.result);
+               // console.log(ob);
+               
+                for (let index = 0; index < ob.length; index++) {
+                    const element = ob[index];
+                    let us= new Usuario(element.dpi,element.nombre_completo,element.nombre_usuario,element.correo,element.rol,element.contrasenia,element.telefono);
+                    lC.agregarUsuario(us);
+                }
+                lC.mostrar()
+                
+
+            };
+            try{
+                reader.readAsText(archivo);
+            }catch(error){
+                console.log("error");
+            }
+        }else{
+            alert("no se ha seleccionado ningun archivo")
+        }
+       
+    }
+    window.addEventListener('load',()=>{
+        document.getElementById('archivo').addEventListener('change',abrirArhivo)
+    });
+
+</script>-->
+</html>
