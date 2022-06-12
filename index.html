@@ -1,13 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script type="text/javascript" src="app.js"></script>
+
+    <script type="text/javascript" src="ListaCircular.js"></script>
+    <script type="text/javascript" src="Lista.js"></script>
+
+   
+    <script type="text/javascript" src="CargarArchivo.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="./index.css">
+
 </head>
+
 <body>
-    <h1>hello, world!</h1>
-    <a href="Login.html"> login</a>
+
+    <!--Ventana principal que se mostrar al usuario-->
+    <div class="linea" id="linea">
+
+        <a href="">+502 782324343</a>
+
+        <a href="">Quienes somos</a>
+        <a href="">correo</a>
+
+        <a href=""><img
+                src="https://img.utdstc.com/icon/fe0/ab6/fe0ab67fa0de2b2681602db5708a076f50dd21106e0c2d38b9661875a37e235e:200"
+                alt=""></a>
+        <a href=""><img
+                src="https://play-lh.googleusercontent.com/h9jWMwqb-h9hjP4THqrJ50eIwPekjv7QPmTpA85gFQ10PjV02CoGAcYLLptqd19Sa1iJ"
+                alt=""></a>
+        <a href=""><img src="https://help.twitter.com/content/dam/help-twitter/brand/logo.png" alt=""></a>
+
+        <button id="iniciar" type="button" class="btn btn-outline-secondary" onclick="a.mostrarLogin() ">Inciar sesión</button>
+        <button id="cerrar" type="button" class="btn btn-outline-secondary"onclick="a.mostrarPag_principal()" style="display: none;">Cerrar sesión</button>
+
+
+    </div>
+
+    <div  class="info"id="info">
+        
+   
+    </div>
+    <!--opciones generales-->
+    <div id="opciones1" class="opciones1">
+        <button type="button" class="btn btn-outline-dark" onclick="a.mostrarPag_principal()">Principal</button>
+
+        <button type="button" class="btn btn-outline-dark">Mostrar Libros</button>
+        <button type="button" class="btn btn-outline-dark">Mostrar Autores</button>
+
+    </div>
+    <!--opciones es para el adimin-->
+    <div class="opciones" id="opciones" style="display:none ;">
+        <button type="button" class="btn btn-outline-dark" onclick="a.mostrarPag_principalAdmin()">Principal</button>
+
+        <button type="button" class="btn btn-outline-dark" onclick="a.cargarUsuarios()">Cargar Usuarios</button>
+        <button type="button" class="btn btn-outline-dark">Cargar Libros</button>
+        <button type="button" class="btn btn-outline-dark">Cargar Autores</button>
+        <button type="button" class="btn btn-outline-dark">Mostrar Autores</button>
+
+        <button type="button" class="btn btn-outline-dark">Mostrar Libros</button>
+        <button type="button" class="btn btn-outline-dark">Carrito de compras</button>
+        
+
+    </div>
+    <!--Opcioens2 es para el usuario-->
+    <div id="opciones2" class="opciones2" style="display:none ;">
+        
+        <button type="button" class="btn btn-outline-dark" onclick="a.mostrarPag_principal()">Principal</button>
+        
+        <button type="button" class="btn btn-outline-dark">Mostrar Autores</button>
+
+        <button type="button" class="btn btn-outline-dark">Mostrar Libros</button>
+        <button type="button" class="btn btn-outline-dark">Carrito de compras</button>
+        
+    </div>
+    <!-- Iniciar sesicon-->
+    <div id="login" class="login" style="text-align:center; display: none;">
+
+        <h1>Login</h1>
+
+        <form>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Usuario</label>
+                <input id="user" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input id="password" type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+
+            <button type="button" class="btn btn-primary" onclick="a.admin()">Submit</button>
+        </form>
+
+
+        <!--<h1>Login</h1>
+        <label for="text">Usuario</label>
+        <input id="user" type="text">
+        <label for="">Password</label>
+        <input id="password" type="text">
+        <button type="button" onclick="a.admin()"> Aceptar</button>
+        <button type="button" onclick="prueba()">mostrar</button>-->
+    </div>
+
+    <!--Ventana para administrador-->
+    <div class="admin" id="admin">
+
+    </div>
+    <!--Informacion de la carga masiva si es adminitrador-->
+    <div id="cargar" style="display: none;">
+        <input id="archivo" type="file">
+
+
+        <div id="lienzo1"></div>
+    </div>
+
+    <div id="lienzo">
+
+    </div>
+    <script src="//d3js.org/d3.v5.min.js"></script>
+    <script src="https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js"></script>
+    <script src="https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js"></script>
+
 </body>
+
 </html>

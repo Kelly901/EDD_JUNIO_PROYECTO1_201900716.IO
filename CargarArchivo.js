@@ -23,6 +23,7 @@ class CargarArchivo {
                     CargarArchivo.lC.agregarUsuario(us);
                 }
                 CargarArchivo.lC.mostrar();
+                CargarArchivo.lC.grafica1();
 
                 let lista={
                     "lista":CargarArchivo.lC
@@ -40,53 +41,16 @@ class CargarArchivo {
         } else {
             alert("no se ha seleccionado ningun archivo")
         }
-
+       
     }
+
 
 }
 
 
 
-function obterner() {
-    console.log("hola")
-    if (localStorage.getItem("ll")) {
-        //let localS = JSON.parse(localStorage.getItem("lC"));
-        //let la=JSON.parse(localStorage.getItem("ll"));
-        //let la=JSON.parse(sessionStorage.getItem("ll"))
-        let la= sessionStorage.getItem("ll")
-        //console.log(localS);
-        console.log(la.a)
-    
-    } else {
-        console.log("no existe")
-    }
-}
-function listaC() {
-    let lc2 = {
-        "lC": "diccionario"
-    };
-    let a={
-        "a":CargarArchivo.lC
-    }
 
-    //localStorage.setItem("lC", JSON.stringify(lc2))
-   // localStorage.setItem("ll",JSON.stringify(a));
-    localStorage.setItem("n", "hola");
-    sessionStorage.setItem("ll",a)
 
-}
-
-function prueba() {
-    if (CargarArchivo.lC != null) {
-        listaC();
-        console.log("ddddddddddddddddd" + CargarArchivo.lC.cabeza.Usuario.usuario)
-        //let ar = new CargarArchivo();
-        obterner();
-
-    } else {
-        console.log("vacia")
-    }
-}
 window.addEventListener('load', () => {
     document.getElementById('archivo').addEventListener('change', CargarArchivo.abrirArhivo)
 });

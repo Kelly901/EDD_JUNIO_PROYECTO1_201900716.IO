@@ -29,17 +29,17 @@
     }
 
     agregarUsuario(_usuario){
-
+        this.tamanio++;
         var nuevo=new NodoCircular(_usuario);
         if(this.cabeza==null){
             this.cabeza=nuevo;
             this.ultimo=this.cabeza;
-            this.tamanio++;
+      
         }else{
             this.ultimo.siguiente=nuevo;
             this.ultimo=nuevo;
-            this.ultimo.siguiente=this.cabeza.siguiente;
-            this.tamanio++;
+            this.ultimo.siguiente=this.cabeza;
+          
         }
 
     }
@@ -96,6 +96,98 @@
         }else{
             alert("el usuario "+nombre+" no existe  o la contraseñia no coincide")
         }
+    }
+
+
+
+    grafica1() {
+        let grafo = "digraph G{\ngraph[size=\"11.75,5.25\"] label=\"Inicio a fin \";\nnode[shape=box];\n";
+        let conexion = "";
+        let nodos = "";
+        let cont = 0;
+        let cont2 = 0;
+        let contAnterior = this.tamanio;
+        let temp = this.cabeza;
+        let principal = "";
+
+        while(cont<this.tamanio){
+            console.log("___________________________________________________________")
+        //    console.log("DPI: "+temp.Usuario.dpi);
+
+        //     console.log("Nombre: "+temp.Usuario.nombre);
+        //     console.log("Usuario: "+temp.Usuario.usuario);
+
+        //     console.log("Correo: "+temp.Usuario.correo);
+        //     console.log("Rol: "+temp.Usuario.rol);
+        //     console.log("Password: "+temp.Usuario.contrasenia);
+        //     console.log("Telefono: "+temp.Usuario.telefono);
+
+            principal += "N" + cont + ";";
+            nodos += "N" + cont + "[label=\"" +temp.Usuario.nombre + "\"] ;\n"
+
+            if (temp.siguiente != this.cabeza) {
+                cont2 = cont + 1;
+                console.log("cont2 "+cont2)
+                conexion += "N" + cont + "->N" + cont2 + ";\n";
+               // conexion += "N" + cont2 + "->N" + cont + ";\n";
+
+            }
+            
+            //cont++;
+
+            
+
+
+            temp=temp.siguiente;
+            cont++;
+        }
+
+        // while (temp.siguiente!=this.cabeza) {
+        //     principal += "N" + cont + ";";
+        //         nodos += "N" + cont + "[label=\"" +temp.Usuario.nombre + "\"] ;\n"
+        //     console.log(temp.Usuario)
+        //         if (temp.siguiente != this.cabeza) {
+        //             cont2 = cont + 1;
+        //             conexion += "N" + cont + "->N" + cont2 + ";\n";
+        //            // conexion += "N" + cont2 + "->N" + cont + ";\n";
+    
+        //         }
+        //         console.log("Encilado "+cont)
+                
+        //         cont++;
+        //         temp = temp.siguiente;
+            
+        // }
+       
+        // do {
+        //     principal += "N" + cont + ";";
+        //     nodos += "N" + cont + "[label=\"" +temp.Usuario.nombre + "\"] ;\n"
+
+        //     if (temp.siguiente != null) {
+        //         cont2 = cont + 1;
+        //         conexion += "N" + cont + "->N" + cont2 + ";\n";
+        //        // conexion += "N" + cont2 + "->N" + cont + ";\n";
+
+        //     }
+            
+        //     cont++;
+        //     temp = temp.siguiente;
+        // } while (temp.siguiente != this.cabeza);
+        
+
+        conexion += "N0->" + "N" + (this.tamanio - 1) + "[dir=both]";
+        console.log((2*this.tamanio - 1))
+        grafo += nodos + "\n";
+        grafo += conexion + "\n";
+        grafo += "{rank=same;" + principal + "}";
+        grafo += "\n}";
+        console.log(grafo);
+
+        d3.select('#lienzo1').graphviz()
+            .width(900)
+            .height(200)
+            .renderDot(grafo);
+
     }
 }
 
