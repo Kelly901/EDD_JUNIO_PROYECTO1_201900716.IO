@@ -142,7 +142,7 @@ class ArbolBinario{
         if (raiz!=null) {
             console.log("autores "+raiz.autor.nombre)
             //_____________
-            let tarjeta = "<div class=\"card\" style=\"width: 13rem; display: inline-block; margin: auto 10px;\" >"
+            let tarjeta = "<div class=\"card\" style=\"width: 9rem; display: inline-block; margin: auto 10px;\" >"
             tarjeta += "<img src=\"https://emser.es/wp-content/uploads/2016/08/usuario-sin-foto.png\" class=\"card-img-top\" alt=\"\"></img>"
             tarjeta += "<div class=\"card-body\">"
             tarjeta += "<p class=\"card-text\">"+raiz.autor.nombre+"</p>"

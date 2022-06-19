@@ -64,8 +64,11 @@ class app {
         let file = document.getElementById("cargar");
         let iniciar = document.getElementById("iniciar");
         let cerrar = document.getElementById("cerrar");
+        let top=document.getElementById("mostrarTop5")
+
 
         iniciar.style.display = "none";
+        top.style.display="none"
         cerrar.style.display = "inline";
         file.style.display = "block";
     }
@@ -75,8 +78,11 @@ class app {
         let file = document.getElementById("cargar_autores");
         let iniciar = document.getElementById("iniciar");
         let cerrar = document.getElementById("cerrar");
+        let top=document.getElementById("mostrarTop5")
+
 
         iniciar.style.display = "none";
+        top.style.display="none"
         cerrar.style.display = "inline";
         file.style.display = "block";
     }
@@ -85,8 +91,10 @@ class app {
         let file = document.getElementById("cargar_libros");
         let iniciar = document.getElementById("iniciar");
         let cerrar = document.getElementById("cerrar");
+        let top=document.getElementById("mostrarTop5")
 
         iniciar.style.display = "none";
+        top.style.display="none"
         cerrar.style.display = "inline";
         file.style.display = "block";
     }
@@ -169,6 +177,8 @@ class app {
         let cola=document.getElementById("lienzoCola");
         let libros2=document.getElementById("mostrarLibros2")
         let top=document.getElementById("mostrarTop5")
+        let mostraInfo = document.getElementById("infoAutor");
+
 
         if (CargarArchivo.ldoble!=null) {
             CargarArchivo.mTop5.innerHTML=""
@@ -200,7 +210,7 @@ class app {
         opcionesU.style.display = "none";
         libros2.style.display="none"
         cola.style.display="none";
-        
+        mostraInfo.style.display="none"
         opcionesA.style.display = "block";
         cerrar.style.display = " inline";
         top.style.display="block"
@@ -217,6 +227,8 @@ class app {
         let libros = document.getElementById("motrarLibros")
         let libros2=document.getElementById("mostrarLibros2")
         let top=document.getElementById("mostrarTop5")
+        let mostraInfo = document.getElementById("infoAutor");
+
 
         if (CargarArchivo.librosM != null) {
 
@@ -235,6 +247,7 @@ class app {
         opcionesA.style.display = "none";
         login.style.display = "none";
         botones.style.display = "none";
+        mostraInfo.style.display="none"
         //CargarArchivo.librosM.style.display="none"
         libros.style.display = "none";
         opcionesG.style.display = "none";
@@ -249,6 +262,8 @@ class app {
     mostrarLogin() {
         let login = document.getElementById("login")
         let top=document.getElementById("mostrarTop5")
+        let mostraInfo = document.getElementById("infoAutor");
+
 
         //CargarArchivo.matrizDis.graficar()
         if (CargarArchivo.mTop5!=null) {
@@ -256,6 +271,7 @@ class app {
             
         }
         top.style.display="none"
+        mostraInfo.style.display="none"
         login.style.display = "block";
 
     }
