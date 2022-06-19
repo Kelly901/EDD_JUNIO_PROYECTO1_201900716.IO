@@ -2,13 +2,13 @@ class NodoPila{
 
     constructor(nodo){
         this.nodo=nodo;
-        
+
         this.siguiente=null;
     }
 
 
 
-    
+
 }
 
 class Pila{
@@ -40,20 +40,29 @@ class Pila{
         }
         return nodo;
     }
-    
+
 }
 
 
-
+class Autor{
+    constructor(dpi,nombre,correo,telefono,direccion,biografia){
+        this.dpi=dpi
+        this.nombre=nombre
+        this.correo=correo
+        this.telefono=telefono
+        this.direccion=direccion
+        this.biografia=biografia
+    }
+}
 
 class NodoArbolBinario{
     static correlativo=1;
-    constructor(valor){
-        this.valor=valor;
+    constructor(autor){
+        this.autor=autor;
         this.left=null;
         this.right=null;
         this.id=NodoArbolBinario.correlativo++;
-        
+
 
     }
 
@@ -61,9 +70,9 @@ class NodoArbolBinario{
       let grafo;
 
         if (this.left==null && this.right==null) {
-            grafo="nodo"+this.id+"[label =\""+this.valor+"\"];\n";
+            grafo="nodo"+this.id+"[label =\""+this.autor.nombre+"\"];\n";
         }else{
-            grafo="nodo"+this.id+"[ label=\"<C0>|"+this.valor+"|<C1>\"];\n";
+            grafo="nodo"+this.id+"[ label=\"<C0>|"+this.autor.nombre+"|<C1>\"];\n";
         }
 
         if (this.left!=null) {
@@ -86,43 +95,111 @@ class NodoArbolBinario{
         let cont2=0;
         grafo+=this.grafica();
         grafo+="}\n"
+
+        d3.select('#lienzoA').graphviz()
        
-        d3.select('#lienzo').graphviz()
-        .width(800)
-        .height(800)
+        
         .renderDot(grafo);
     }
-    
+
 }
 
 
 class ArbolBinario{
-
+    
     constructor(){
         this.raiz=null;
     }
 
-    agregar(valor){
+    agregar(autor){
 
-        this.raiz=this.agregar2(valor,this.raiz);
+        this.raiz=this.agregar2(autor,this.raiz);
     }
 
-    agregar2(valor,raiz){
+    agregar2(autor,raiz){
         if(raiz==null){
-            let nodoArbol= new NodoArbolBinario(valor);
+            let nodoArbol= new NodoArbolBinario(autor);
             return nodoArbol;
         }else{
-            if (valor<raiz.valor) {
-                raiz.left=this.agregar2(valor,raiz.left);
-            }else if(valor>raiz.valor){
-                raiz.right=this.agregar2(valor,raiz.right)
+            if (autor.nombre<raiz.autor.nombre) {
+                raiz.left=this.agregar2(autor,raiz.left);
+            }else if(autor.nombre>raiz.autor.nombre){
+                raiz.right=this.agregar2(autor,raiz.right)
             }else{
                 console.log("repetido");
             }
         }
         return raiz;
     }
+
+    pre_order(raiz){
     
+        this.pre_order2(raiz);
+      
+    }
+
+    pre_order2(raiz){
+        if (raiz!=null) {
+            console.log("autores "+raiz.autor.nombre)
+            //_____________
+            let tarjeta = "<div class=\"card\" style=\"width: 13rem; display: inline-block; margin: auto 10px;\" >"
+            tarjeta += "<img src=\"https://emser.es/wp-content/uploads/2016/08/usuario-sin-foto.png\" class=\"card-img-top\" alt=\"\"></img>"
+            tarjeta += "<div class=\"card-body\">"
+            tarjeta += "<p class=\"card-text\">"+raiz.autor.nombre+"</p>"
+            tarjeta += "</div>"
+            tarjeta += "</div>"
+    
+            CargarArchivo.autores.innerHTML+=tarjeta;
+
+
+            //______________________________
+            this.pre_order2(raiz.left)
+            this.pre_order2(raiz.right)
+        }
+    }
+
+//_____________________________
+
+pre_buscar(raiz,nombre){
+    console.log("nnnnnn"+nombre)
+    this.pre_buscar2(raiz,nombre);
+  
+}
+
+pre_buscar2(raiz,nombre){
+    if (raiz!=null) {
+        
+        let nombreAutor=document.getElementById("nombreAutor")
+        let dpiAutor=document.getElementById("dpiAutor")
+        let correoAutor=document.getElementById("correoAutor")
+        let telAutor=document.getElementById("telefonoAutor")
+        let direccionA=document.getElementById("direccionAutor")
+        let bio=document.getElementById("bioAutor")
+        //console.log(nombre+"-------"+raiz.nombre)
+        if(nombre==raiz.autor.nombre){
+            
+            nombreAutor.innerHTML=raiz.autor.nombre;
+            dpiAutor.innerHTML=raiz.autor.dpi;
+            correoAutor.innerHTML=raiz.autor.correo;
+            telAutor.innerHTML=raiz.autor.telefono;
+            direccionA.innerHTML=raiz.autor.direccion;
+            bio.innerHTML=raiz.autor.biografia;
+
+        }
+        //______________________________
+        this.pre_buscar2(raiz.left,nombre)
+        this.pre_buscar2(raiz.right,nombre)
+    }
+}
+
+
+
+
+
+
+
+        
+
     // agregar(valor){
     //     if (this.raiz==null) {
     //         this.raiz=new NodoArbolBinario(valor);
@@ -147,7 +224,7 @@ class ArbolBinario{
         }
 
 
-        
+
     }
 
 
@@ -157,24 +234,24 @@ class ArbolBinario{
 
 }
 
-let ar=new ArbolBinario()
+// let ar=new ArbolBinario()
 
-ar.agregar('Sharon');
-ar.agregar('Sharon Tagual');
-ar.agregar('Juan');
-ar.agregar('Xhun');
+// ar.agregar('Sharon');
+// ar.agregar('Sharon Tagual');
+// ar.agregar('Juan');
+// ar.agregar('Xhun');
 
-ar.agregar('Maria');
-
-
-ar.agregar('Alberto');
-ar.agregar('Rosario');
+// ar.agregar('Maria');
 
 
+// ar.agregar('Alberto');
+// ar.agregar('Rosario');
 
 
 
 
-ar.graficar();
+
+
+// ar.graficar();
 
 

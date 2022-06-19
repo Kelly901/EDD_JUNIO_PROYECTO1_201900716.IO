@@ -1,3 +1,69 @@
+//_______________________Lista simple
+// class Libro {
+//     constructor(isb, nombre_autor, nombre_libro, cantidad, paginas, categoria) {
+//         this.isb = isb
+//         this.nombre_autor = nombre_autor
+//         this.nombre_libro = nombre_libro
+//         this.cantidad = cantidad
+//         this.paginas = paginas
+//         this.categoria = categoria
+//     }
+// }
+
+
+class NodoSimple{
+
+    constructor(libro){
+        this.libro=libro;
+        this.siguiente=null;
+    }
+}
+
+class ListaSimple{
+
+    constructor(){
+        this.tamanio=0;
+        this.primero=null;
+
+    }
+
+    agregarLibro(libro){
+        let nuevo=new NodoSimple(libro);
+       
+        this.tamanio++;
+        if (this.primero == null) {
+            this.primero = nuevo;
+        } else {
+            let aux = this.primero;
+            while (aux.siguiente != null) {
+                aux = aux.siguiente;
+            }
+            aux.siguiente = nuevo
+        }
+    }
+
+    get(nombre) {
+        let aux = this.primero;
+        while (aux != null) {
+            if (aux.libro.nombre_libro ==nombre) {
+                //console.log(aux.contenido)
+                //  console.log("____________"+aux instanceof NodoMatrizO)
+
+                return aux.contenido
+            }
+            aux = aux.siguiente
+        }
+        return null;
+    }
+
+    size() {
+        return this.tamanio;
+    }
+}
+ 
+ 
+ //________________________Lisa cisruclar
+ 
  class Usuario{
     constructor(_dpi,_nombre,_usuario,_correo,_rol,_contrasenia,_telefono){
         this.dpi=_dpi;
@@ -12,8 +78,9 @@
 
  class NodoCircular{
 
-    constructor(_Usuario){
+    constructor(_Usuario,lista){
         this.Usuario=_Usuario;
+        this.lista=lista
         this.siguiente=null;
     }
 
@@ -28,9 +95,9 @@
         this.tamanio=0;
     }
 
-    agregarUsuario(_usuario){
+    agregarUsuario(_usuario,lista){
         this.tamanio++;
-        var nuevo=new NodoCircular(_usuario);
+        var nuevo=new NodoCircular(_usuario,lista);
         if(this.cabeza==null){
             this.cabeza=nuevo;
             this.ultimo=this.cabeza;
@@ -62,9 +129,6 @@
              console.log("Password: "+temp.Usuario.contrasenia);
              console.log("Telefono: "+temp.Usuario.telefono);
 
-             
-
-
              temp=temp.siguiente;
              cont++;
          }
@@ -88,42 +152,87 @@
          }
          return false;
     }
+
+    rolUsuario(nombre){
+
+        var temp=this.cabeza;
+        let cont=0;
+        console.log(this.tamanio);
+        
+         while(cont<this.tamanio){
+             console.log("___________________________________________________________")
+                
+             if (nombre==temp.Usuario.usuario) {
+
+                if (temp.Usuario.rol=="Administrador") {
+
+                    return "admin";
+                }else{
+                    return "usuario"
+                }
+                 
+             }
+
+             temp=temp.siguiente;
+             cont++;
+         }
+         return false;
+    }
     usuario(){
         let nombre=document.getElementById("user").value;
         let password=document.getElementById("password").value;
         if(this.usuarioExiste(nombre,password)){
-            alert("bienvenido "+nombre)
+            return this.rolUsuario(nombre)
+
+            //alert("bienvenido "+nombre)
         }else{
             alert("el usuario "+nombre+" no existe  o la contraseñia no coincide")
+            return null
         }
     }
 
+    agregar_libroCliente(libro){
+        let nombre=document.getElementById("user").value
+        var temp=this.cabeza;
+        let cont=0;
+        let contl=0;
+            let contl2=0;
+        console.log(this.tamanio);
+        
+         while(cont<this.tamanio){
+             console.log("___________________________________________________________")
+                
+             if (nombre==temp.Usuario.usuario) {
+                temp.lista.agregarLibro(libro)
+                console.log("tamaño de la lista "+temp.lista.size())
+                break 
+             }
 
+             temp=temp.siguiente;
+             cont++;
+         }
 
-    grafica1() {
-        let grafo = "digraph G{\ngraph[size=\"11.75,5.25\"] label=\"Inicio a fin \";\nnode[shape=box];\n";
+        
+    }
+
+    grafica1(nombre) {
+        let grafo = "digraph G{\ngraph[size=\"11.70,6.25\"] label=\"Inicio a fin \";\nnode[shape=box];\n";
         let conexion = "";
         let nodos = "";
         let cont = 0;
         let cont2 = 0;
+        let contl=0;
+        let contl2=0;
         let contAnterior = this.tamanio;
         let temp = this.cabeza;
         let principal = "";
 
         while(cont<this.tamanio){
             console.log("___________________________________________________________")
-        //    console.log("DPI: "+temp.Usuario.dpi);
 
-        //     console.log("Nombre: "+temp.Usuario.nombre);
-        //     console.log("Usuario: "+temp.Usuario.usuario);
-
-        //     console.log("Correo: "+temp.Usuario.correo);
-        //     console.log("Rol: "+temp.Usuario.rol);
-        //     console.log("Password: "+temp.Usuario.contrasenia);
-        //     console.log("Telefono: "+temp.Usuario.telefono);
 
             principal += "N" + cont + ";";
-            nodos += "N" + cont + "[label=\"" +temp.Usuario.nombre + "\"] ;\n"
+            nodos += "N" + cont + "[label=\""+temp.Usuario.dpi +"\\n"+ temp.Usuario.nombre +"\\n"+ temp.Usuario.usuario+"\\nRol: "+temp.Usuario.rol +"\\n"+temp.Usuario.correo+"\\n"+temp.Usuario.telefono+"\\n"+"\"] ;\n"
 
             if (temp.siguiente != this.cabeza) {
                 cont2 = cont + 1;
@@ -131,6 +240,25 @@
                 conexion += "N" + cont + "->N" + cont2 + ";\n";
                // conexion += "N" + cont2 + "->N" + cont + ";\n";
 
+            }
+            let tempL=temp.lista.primero;
+            
+            while (tempL!=null) {
+
+                if (tempL==temp.lista.primero) {
+                    
+                    conexion+="N"+cont+"->Nc"+contl+";\n";
+                }
+
+                nodos+="Nc"+contl+"[label=\""+tempL.libro.nombre_libro+"\"];\n";
+
+                if (tempL.siguiente!=null) {
+                     
+                    contl2=contl+1;
+                    conexion+="Nc"+contl+"->Nc"+contl2+";\n"
+                }
+                contl++;
+                tempL=tempL.siguiente;
             }
             
             //cont++;
@@ -143,39 +271,10 @@
         }
 
         // while (temp.siguiente!=this.cabeza) {
-        //     principal += "N" + cont + ";";
-        //         nodos += "N" + cont + "[label=\"" +temp.Usuario.nombre + "\"] ;\n"
-        //     console.log(temp.Usuario)
-        //         if (temp.siguiente != this.cabeza) {
-        //             cont2 = cont + 1;
-        //             conexion += "N" + cont + "->N" + cont2 + ";\n";
-        //            // conexion += "N" + cont2 + "->N" + cont + ";\n";
-    
-        //         }
-        //         console.log("Encilado "+cont)
-                
-        //         cont++;
-        //         temp = temp.siguiente;
-            
-        // }
        
-        // do {
-        //     principal += "N" + cont + ";";
-        //     nodos += "N" + cont + "[label=\"" +temp.Usuario.nombre + "\"] ;\n"
-
-        //     if (temp.siguiente != null) {
-        //         cont2 = cont + 1;
-        //         conexion += "N" + cont + "->N" + cont2 + ";\n";
-        //        // conexion += "N" + cont2 + "->N" + cont + ";\n";
-
-        //     }
-            
-        //     cont++;
-        //     temp = temp.siguiente;
-        // } while (temp.siguiente != this.cabeza);
         
 
-        conexion += "N0->" + "N" + (this.tamanio - 1) + "[dir=both]";
+        conexion += "N" + (this.tamanio - 1)+ "->N0";
         console.log((2*this.tamanio - 1))
         grafo += nodos + "\n";
         grafo += conexion + "\n";
@@ -183,9 +282,9 @@
         grafo += "\n}";
         console.log(grafo);
 
-        d3.select('#lienzo1').graphviz()
-            .width(900)
-            .height(200)
+        d3.select('#'+nombre).graphviz()
+            .width(1300)
+            .height(1000)
             .renderDot(grafo);
 
     }
