@@ -56,12 +56,12 @@ class Autor{
 }
 
 class NodoArbolBinario{
-    static correlativo=1;
+    static cor=1;
     constructor(autor){
         this.autor=autor;
         this.left=null;
         this.right=null;
-        this.id=NodoArbolBinario.correlativo++;
+        this.id=NodoArbolBinario.cor++;
 
 
     }
@@ -87,7 +87,7 @@ class NodoArbolBinario{
     }
 
     crearGrafica(){
-        let grafo="digraph g{\ngraph[size=\"11.20,5.25\"] label=\"Tree  \"; \nrankdir=TB;\nnode [shape=record,width=0.5,fontsize=15, fillcolor=gray51,style=filled];\n"
+        let grafo="digraph g{\ngraph[size=\"11.20,5.25\"] label=\"Árbol binario  \"; \nrankdir=TB;\nnode [shape=record,width=0.5,fontsize=15, fillcolor=gray51,style=filled];\n"
         //let nodo=null;
       //  let pila= new Pila();
     //    pila.push(raiz);

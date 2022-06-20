@@ -13,6 +13,8 @@ class CargarArchivo {
     static ldoble;
     //_-
     static mTop5;
+
+   
     static abrirArhivo(event) {
         let auxiliar = "";
         let archivo = event.target.files[0];
@@ -90,8 +92,15 @@ class CargarArchivo {
                 // constructor(dpi,nombre,correo,telefono,direccion,bibliografia){
                 for (let index = 0; index < ob.length; index++) {
                     const element = ob[index];
+                    if (element.biografia!=undefined && element.biografia!=null) {
                     let us = new Autor(element.dpi, element.nombre_autor, element.correo, element.telefono,element.direccion,element.biografia);
                     CargarArchivo.arbol_bi.agregar(us);
+                        
+                    }else{
+                    let us = new Autor(element.dpi, element.nombre_autor, element.correo, element.telefono,element.direccion,element.about);
+                    CargarArchivo.arbol_bi.agregar(us);
+
+                    }
                 }
                 
                 CargarArchivo.arbol_bi.graficar();

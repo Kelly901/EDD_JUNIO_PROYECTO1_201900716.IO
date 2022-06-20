@@ -216,7 +216,7 @@ class ListaSimple{
     }
 
     grafica1(nombre) {
-        let grafo = "digraph G{\ngraph[size=\"11.70,6.25\"] label=\"Inicio a fin \";\nnode[shape=box];\n";
+        let grafo = "digraph G{\ngraph[size=\"11.70,6.25\"] label=\"Lista Circular \";\nnode[shape=box];\n";
         let conexion = "";
         let nodos = "";
         let cont = 0;

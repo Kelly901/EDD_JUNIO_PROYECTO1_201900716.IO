@@ -56,6 +56,8 @@ class app {
                 cerrar.style.display="inline"
 
             }
+        }else{
+            alert("Usuario o contraseña incorrectos")
         }
 
     }
@@ -178,6 +180,9 @@ class app {
         let libros2=document.getElementById("mostrarLibros2")
         let top=document.getElementById("mostrarTop5")
         let mostraInfo = document.getElementById("infoAutor");
+        let usuarios1 = document.getElementById("mostrarUsuarios1");
+        let mostrarPila = document.getElementById("mostrarPila")
+
 
 
         if (CargarArchivo.ldoble!=null) {
@@ -198,7 +203,8 @@ class app {
             CargarArchivo.librosM.style.display = "none"
 
         }
-
+        mostrarPila.style.display="none"
+        usuarios1.style.display="none"
         libros.style.display = "none";
         lb.style.display = "none";
         file.style.display = "none";
@@ -228,6 +234,9 @@ class app {
         let libros2=document.getElementById("mostrarLibros2")
         let top=document.getElementById("mostrarTop5")
         let mostraInfo = document.getElementById("infoAutor");
+
+        CargarArchivo.autores.style.display = "none";
+      
 
 
         if (CargarArchivo.librosM != null) {
@@ -293,6 +302,8 @@ class app {
 
     }
 
+    
+
     mostrarAutores() {
         let top=document.getElementById("mostrarTop5")
 
@@ -350,7 +361,7 @@ class app {
         }
 
     }
-
+//
     mosotrarBotonesDyA() {
         let botones = document.getElementById("botonesLibros")
         let top=document.getElementById("mostrarTop5")
@@ -362,6 +373,20 @@ class app {
 
     }
 
+     mosotrarBotonesDyA2() {
+        let botones = document.getElementById("botonesLibros")
+        let top=document.getElementById("mostrarTop5")
+        let boton=document.getElementById("botonComprar")
+        let text=document.getElementById("compra")
+        CargarArchivo.mTop5.style.display="none"
+        top.style.display="none"
+        boton.style.display="none"
+        text.style.display="none"
+        botones.style.display = "block"
+
+    }
+
+//
     motrarLibrosA() {
         //let libro=document.getElementById("listaLibros")
         CargarArchivo.librosM.innerHTML = ""

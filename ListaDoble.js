@@ -151,7 +151,7 @@ class ListaDoble{
         console.log("::::::::::")
 
         while (aux!=null) {
-            nodos+="N"+cont+"[label=\"Posición"+(cont+1)+"Nombre: "+aux.usuario.usuario+"\\nCantidad"+aux.usuario.cantidad+"\"];\n"
+            nodos+="N"+cont+"[label=\"Posición "+(cont+1)+" Nombre: "+aux.usuario.usuario+"\\nCantidad: "+aux.usuario.cantidad+"\"];\n"
             if (aux.siguiente!=null) {
                 
                 cont2=cont+1;

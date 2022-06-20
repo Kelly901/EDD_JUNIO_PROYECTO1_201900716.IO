@@ -15,7 +15,6 @@ class ListaAscendete {
 
     constructor() {
         this.inicio = null;
-        this.final = null;
         this.size=0;
     }
 
@@ -60,13 +59,13 @@ class ListaAscendete {
             aux=aux.siguiente;
         }
 
-        if (CargarArchivo.colaU.existente(usuario)) {
+        if (CargarArchivo.colaU.existente(nombre,usuario)) {
             
         }else{
             let usuarioE =new UsuarioE(usuario,nombre)
             CargarArchivo.colaU.encolar(usuarioE)
         }
-     
+        alert("El libro no existe")
            
             return false
         
@@ -84,9 +83,9 @@ class ListaAscendete {
                 let j = i.siguiente //i+1
                 while (j != null) {
                     if (i.libro.nombre_libro > j.libro.nombre_libro) {
-                        let temporal2 = i.libro.nombre_libro
-                        i.libro.nombre_libro = j.libro.nombre_libro
-                        j.libro.nombre_libro = temporal2
+                        let temporal2 = i.libro
+                        i.libro = j.libro
+                        j.libro= temporal2
 
                     }
                     j = j.siguiente

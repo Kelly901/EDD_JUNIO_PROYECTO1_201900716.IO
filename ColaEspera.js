@@ -70,11 +70,11 @@ class ColaUsuario{
 
     }
 
-    existente(usuario){
+    existente(nombre_libro,usuario){
 
         let aux=this.frente;
         while (aux!=null) {
-            if (usuario==aux.usuario.usuario) {
+            if (nombre_libro==aux.usuario.nombre_libro && usuario==aux.usuario.usuario ) {
                 console.log("libro existente")
                 aux.usuario.cantidad+=1;
 
